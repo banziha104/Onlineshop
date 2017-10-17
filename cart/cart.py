@@ -4,6 +4,7 @@ from decimal import Decimal
 from django.conf import settings
 from shop.models import Product
 
+
 class Cart(object):
     def __init__(self, request):
         self.session = request.session                      #세션 요청
@@ -20,9 +21,9 @@ class Cart(object):
     # for item in self.cart.values():
     #     sum = sum + item['quantity']
     #     return sum
-    
+
     def __iter__(self):
-        products_ids= self.cart.keys()
+        products_ids = self.cart.keys()
         products = Product.objects.filter(id__in=products_ids)
         for product in products:
             self.cart[str(product.id)]['product'] = product
@@ -31,3 +32,20 @@ class Cart(object):
             item['price'] = Decimal[item['price']]
             item['total_price'] = item['price'] * item['quantity']
             yield item
+
+    def add(self,product,quantity=1,update_quantity=False):
+        product_id = str(product.id)
+        if product_id not in self.cart:
+            self.cart[product_id] = {'quantity':0,'price':str(product.price)}
+        if update_quantity:                                 # 장바구니에 없다면, 초기화 및 추가
+            self.cart[product_id]['quantity'] = quantity
+        else :                                              # 장바구니에 있다면, 기존에 추가
+            self.cart[product_id]['quantity'] += quantity
+        self.save()
+
+
+    def remove(self,product):
+        product_id = str(product.id)
+        if product_id in self.cart:
+            del self.cart[product_id]
+            self.save()
