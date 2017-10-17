@@ -49,3 +49,11 @@ class Cart(object):
         if product_id in self.cart:
             del self.cart[product_id]
             self.save()
+
+    def save(self):
+        self.session[settings.CART_SESSION_ID] = self.cart # 세션에 저장
+        self.session.modified = True                       # 세션을 만들고나서
+
+    def clear(self):
+        self.session[settings.CART_SESSION_ID] = {}        #세션 초기하ㅗ
+        self.session.modified = True
