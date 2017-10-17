@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}-Detatil{% endblock %}
+{% block contents %}
+    <div class = "product-detail">
+        <img src = "{% if product.image %}{{ product.image.url }}{% endif %}">
+        <h1>{{ product.name }}</h1>
+        <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a> </h2>
+        <p class="price">{{ product.price }}</p>
+        <form action="" method="post">
+            <input type="submit" value="Add to Cart">
+        </form>
+        {{ product.description|linebreaks }}
+    </div>
+{% endblock %}

@@ -12,14 +12,16 @@
 <div>
     {% for product in products %}
         <div class = "item">
-            <a href="#">
+            <a href="{{ product.get_absoulte_url }}">
                 <img src="{% if product.image %}
                      {{ product.image.url }}
                      {% else %}
                      no_image.png
-                     {% endif %}">
+                     {% endif %}"
+                    width="300"
+                    height="300">
             </a>
-            <a href="#">{{ product.name }}</a><br/>
+            <a href="{{ product.get_absoulte_url }}">{{ product.name }}</a><br/>
             ${{ product.price }}
         </div>
     {% endfor %}
