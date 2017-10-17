@@ -19,8 +19,8 @@ from django.conf import settings              # 미디어 url 불러오기
 from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^',include('shop.urls',namespace='shop')),
     url(r'^cart/',include('cart.urls', namespace= 'cart')),
+    url(r'^', include('shop.urls', namespace='shop')),  # 메인 페이지는 url패턴에서 가장 밑에 넣어둠
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
