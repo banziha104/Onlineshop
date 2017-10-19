@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}-Detatil{% endblock %}
-{% block contents %}
+{% block content %}
     <div class = "product-detail">
         <img src = "{% if product.image %}{{ product.image.url }}{% endif %}">
         <h1>{{ product.name }}</h1>

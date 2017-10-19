@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'x721clq^39eu^6=h+4+im(n&0&7=&46qy9#z_d^2jr^i4%4+m2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -140,3 +140,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
 CART_SESSION_ID = "3dfjdk31ndjal1"
 SITE_ID = 1
+LOGIN_REDIRECT_URL = '/' # 로그인 후 리다이렉션
