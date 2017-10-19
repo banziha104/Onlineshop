@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}-Cart{% endblock %}
-{% block contents %}
+{% block content %}
 
 <h1>Shopping Cart Products</h1>
 <table class="cart">
@@ -21,7 +21,9 @@
             <tr>
                 <td>
                     <a href="{{product.get_absolute_url}}">
-                        <img src="{% if product.image %}{{product.image.url}}{% endif %}" style="max-width:100px;">
+                        <img src="{% if product.image %}{{product.image.url}}
+                                  {% else %}{% static "img/no_image.png" %}{% endif %}"
+                                  style="max-width:100px;">
                     </a>
                 </td>
                 <td>
@@ -53,6 +55,6 @@
 </table>
 <p class="text-right">
     <a href="{% url 'shop:product_list' %}" class="button light">Continue Shopping</a>
-    <a href="#" class="button">Checkout</a>
+    <a href="{% url "orders:order_create" %}" class="button">Checkout</a>
 </p>
 {% endblock %}

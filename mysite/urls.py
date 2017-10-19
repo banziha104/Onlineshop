@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^cart/',include('cart.urls', namespace= 'cart')),
+    url(r'^orders/', include('orders.urls',namespace='orders')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^', include('shop.urls', namespace='shop')),  # 메인 페이지는 url패턴에서 가장 밑에 넣어둠
 
