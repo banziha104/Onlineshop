@@ -136,9 +136,17 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
 ]
 
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
 CART_SESSION_ID = "3dfjdk31ndjal1"
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/' # 로그인 후 리다이렉션
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # 어떤 시스템에게 이메일을 맡길지
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587 # 이메일 포트
+EMAIL_HOST_USER = "banziha104@gmail.com"
+EMAIL_PASSWORD = "!dl38349687"
+EMAIL_USE_TLS = True
