@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x721clq^39eu^6=h+4+im(n&0&7=&46qy9#z_d^2jr^i4%4+m2'
+SECRET_KEY = '1#71(u%wosijzg!6$e#&b=s3mz@_$mll_q+j+j5vz_k6ssu!^n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,15 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'shop',
+    'cart',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'orders',
-    'shop',
-    'cart',
-    'coupons',
+    'coupons'
 ]
 
 MIDDLEWARE = [
@@ -63,15 +63,15 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates/'),],
+        'DIRS': [os.path.join(BASE_DIR,'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
-            'context_processors': [                                 # 컨텍스트
+            'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'cart.context.cart'                                 # 컨텍스트 추가
+                'cart.context_cart.cart',
             ],
         },
     },
@@ -89,12 +89,11 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -118,9 +117,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'ko-kr'
+LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Seoul'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -134,20 +133,24 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
+                os.path.join(BASE_DIR,'static')
 ]
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
-CART_SESSION_ID = "3dfjdk31ndjal1"
-SITE_ID = 1
-LOGIN_REDIRECT_URL = '/' # 로그인 후 리다이렉션
+CART_SESSION_ID = 'cart_id'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # 어떤 시스템에게 이메일을 맡길지
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587 # 이메일 포트
-EMAIL_HOST_USER = "banziha104@gmail.com"
-EMAIL_PASSWORD = "!dl38349687"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "jake@wishcompany.net"
+EMAIL_HOST_PASSWORD = "password"
 EMAIL_USE_TLS = True
+
+
+IAMPORT_KEY = '6656791780160842'
+IAMPORT_SECRET = 'g4dWk9QWNpAxkGg8HqOLgg1nnkdGymoOrBLMKCIy1j5lZmuHMis2ztpWODDm01brCXdnzWVAf1WfnqWa'

@@ -13,17 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf.urls import url,include
 from django.contrib import admin
-from django.conf import settings              # 미디어 url 불러오기
+from django.conf import settings
 from django.conf.urls.static import static
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^cart/',include('cart.urls', namespace= 'cart')),
-    url(r'^orders/', include('orders.urls',namespace='orders')),
+    url(r'^cart/', include('cart.urls', namespace='cart')),
+    url(r'^orders/',include('orders.urls', namespace='orders')),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^', include('shop.urls', namespace='shop')),  # 메인 페이지는 url패턴에서 가장 밑에 넣어둠
+    url(r'^coupons/', include('coupons.urls', namespace='coupons')),
+    url(r'^', include('shop.urls', namespace='shop')),
 
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
